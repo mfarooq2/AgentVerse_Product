@@ -73,8 +73,7 @@ class Scraper:
         try:
             if tag.name == "h2" and tag['class'][0] == 'a-size-base':
                 self.name = tag.text.strip()
-            price_tag = self.soup.find("span", {'class': 'price'})
-            if price_tag:
+            if price_tag := self.soup.find("span", {'class': 'price'}):
                 self.price = price_tag.text.strip()
         except Exception as e:
             print(f'Error: {e}')
