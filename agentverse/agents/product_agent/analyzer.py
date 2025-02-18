@@ -35,7 +35,9 @@ class Analyzer:
           print(f"Total products : {len(products)}")
           print("-----------------------")
 
-    def get_all_products(self, name_data = []):
+    def get_all_products(self, name_data=None):
+        if name_data is None:
+            name_data = []
         for product_info in name_data:
             site = product_info['site']
             product_name = product_info['name']
