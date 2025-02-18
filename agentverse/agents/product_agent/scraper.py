@@ -60,16 +60,14 @@ class Scraper:
       return self.name, self.price
 
     def scrape_bestbuy(self, item):
-      self.url = "https://www.bestbuy.com/s?k="
-      self.source = requests.get(self.url+item, headers=self.headers)
-      self.soup = BeautifulSoup(self.source.content, 'html.parser')
-      name_tag = self.soup.find("span", {'class': "product-title"})
-      if name_tag:
-        self.name = name_tag.text.strip()
-      price_tag = self.soup.find("span", {'class': 'price'})
-      if price_tag:
-        self.price = price_tag.text.strip()
-      return self.name, self.price
+        self.url = "https://www.bestbuy.com/s?k="
+        self.source = requests.get(self.url+item, headers=self.headers)
+        self.soup = BeautifulSoup(self.source.content, 'html.parser')
+        if name_tag := self.soup.find("span", {'class': "product-title"}):
+            self.name = name_tag.text.strip()
+        if price_tag := self.soup.find("span", {'class': 'price'}):
+            self.price = price_tag.text.strip()
+        return self.name, self.price
 
     def get_product_info(self, tag):
         try:
