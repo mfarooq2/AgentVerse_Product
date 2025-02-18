@@ -36,14 +36,15 @@ class TestProductAgent(unittest.TestCase):
         self.assertNotEqual(price, "")
 
     def test_compare_products(self):
-      name_data = []
-      products_data = []
-      name_data.append({'name':"Laptop", 'price':"1200", 'site':"amazon"})
-      name_data.append({'name':"Computer", 'price':"1000", 'site':"ebay"})
-      name_data.append({'name':"Mouse", 'price':"1250", 'site':"bestbuy"})
-      self.analyzer.get_all_products(name_data)
-      self.analyzer.present_data()
-      self.assertEqual(self.analyzer.compare_products(), {'name':"Computer", 'price':"1000"})
+        products_data = []
+        name_data = [
+            {'name': "Laptop", 'price': "1200", 'site': "amazon"},
+            {'name': "Computer", 'price': "1000", 'site': "ebay"},
+            {'name': "Mouse", 'price': "1250", 'site': "bestbuy"},
+        ]
+        self.analyzer.get_all_products(name_data)
+        self.analyzer.present_data()
+        self.assertEqual(self.analyzer.compare_products(), {'name':"Computer", 'price':"1000"})
         
 if __name__ == '__main__':
     unittest.main()
